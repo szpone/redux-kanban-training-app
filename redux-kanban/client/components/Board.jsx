@@ -12,7 +12,7 @@ export class BoardComponent extends React.Component {
         const { onLeft, onRight, board } = this.props;
         return (
             <div>
-                <Column name="Nowe" items={board.new} button={onRight} />
+                <Column name="Nowee" items={board.new} button={onRight} />
                 <Column name="Zrobione" items={board.done} button={onLeft} />
                 <TaskForm/>
             </div>
