@@ -1,29 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import ConnectedTaskForm, { TaskForm } from '../TaskForm.jsx';
-import ConnectedBoard, { Board } from '../Board.jsx';
+import { TaskForm } from '../TaskForm.jsx';
 import { Column, BoardComponent } from '../Board.jsx';
-import { connect } from 'react-redux'
-import { Provider } from 'react-redux';
-import {createStore} from "redux";
-import reducer from "../kanban/reducer";
+import ReactDOM from 'react-dom';
+import "jest";
+import renderer from 'react-test-render';
 
 
-let store = createStore(
-    reducer,
-);
+const boardComponentProps = { board: { new: [], done: [] }, onLeft: jest.fn(), onRight: jest.fn() };
+const boardComponent = shallow(<BoardComponent {...boardComponentProps}/>);
 
-test('render a form', () => {
-   const wrapper = shallow(
-       <Provider store={store}><ConnectedTaskForm/></Provider>
-   );
-   expect(wrapper).toMatchSnapshot();
+test("render board with columns", () => {
+    expect(boardComponent.find(Column)).toHaveLength(2);
 });
 
-
-describe('<Column />', () => {
-   it('allows to set props', () => {
-       const wrapper = mount(<Column name="Nowe" />);
-       expect(wrapper.props().name).to.equal("Nowe");
-   })
+it('renders correctly', () => {
+   const tree = renderer.create(<BoardComponent {...boardComponentProps } />).toJSON();
+   expect(tree).toMatchSnapshot();
 });

@@ -20,7 +20,7 @@ export class BoardComponent extends React.Component {
     }
 }
 
-const Column = (props) => {
+export const Column = (props) => {
     const { name, items, button } = props;
     return (
         <div>
