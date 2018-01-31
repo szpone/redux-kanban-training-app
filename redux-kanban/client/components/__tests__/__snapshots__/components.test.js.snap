@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`renders correctly Board 1`] = `
 <div>
   <Column
     button={[MockFunction]}
     items={Array []}
-    name="Nowe"
+    name="Nowee"
   />
   <Column
     button={[MockFunction]}
@@ -13,5 +13,21 @@ exports[`renders correctly 1`] = `
     name="Zrobione"
   />
   <Connect(TaskFormComponent) />
+</div>
+`;
+
+exports[`renders correctly TaskForm 1`] = `
+<div>
+  <input
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+  <button
+    id="add"
+    onClick={[Function]}
+  >
+    Submit
+  </button>
 </div>
 `;

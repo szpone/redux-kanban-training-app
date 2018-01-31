@@ -1,9 +1,9 @@
 import React from 'react';
 import { add } from "./kanban/reducer";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 
-class TaskFormComponent extends React.Component {
+export class TaskFormComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {"name": ""}
@@ -14,7 +14,7 @@ class TaskFormComponent extends React.Component {
             <div>
                 <input type="text" value={this.state.name}
                        onChange={(event) => this.setState({"name": event.target.value})}/>
-                <button onClick={() => {
+                <button id="add" onClick={() => {
                     onAdd(this.state.name);
                     this.setState({"name": ""});
                 } }>Submit</button>
