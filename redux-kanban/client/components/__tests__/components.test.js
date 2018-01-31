@@ -2,7 +2,6 @@ import React from 'react';
 import { TaskFormComponent } from '../TaskForm.jsx';
 import { Column, BoardComponent } from '../Board.jsx';
 import "jest";
-import { shallow } from 'enzyme';
 
 const boardComponentProps = { board: { new: [], done: [] }, onLeft: jest.fn(), onRight: jest.fn(), onAdd: jest.fn() };
 const boardComponent = shallow(<BoardComponent {...boardComponentProps}/>);
@@ -29,4 +28,13 @@ it('should click the submit button', () => {
     taskForm.find(`button`).simulate('click');
 });
 
-
+it('should purge input', () => {
+    const taskForm = mount(<TaskFormComponent {...boardComponentProps} />);
+    const input = taskForm.find(`input`);
+    input.instance().value = "Foo";
+    input.simulate('change', input);
+    expect(input.instance().value).toEqual("Foo");
+    const button = taskForm.find(`button`);
+    button.simulate('click');
+    expect(input.instance().value).toEqual("");
+});
